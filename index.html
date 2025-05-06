@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VX Store - APK Repository</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #dbeafe;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --white: #ffffff;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --rounded-sm: 0.125rem;
+      --rounded: 0.25rem;
+      --rounded-md: 0.375rem;
+      --rounded-lg: 0.5rem;
+      --rounded-xl: 0.75rem;
+      --rounded-full: 9999px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--white);
+      color: var(--gray-800);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--gray-900);
+    }
+
+    h1 { 
+      font-size: 2.5rem; 
+      letter-spacing: -0.025em;
+    }
+    h2 { 
+      font-size: 2rem; 
+      letter-spacing: -0.02em;
+    }
+    h3 { 
+      font-size: 1.5rem; 
+      letter-spacing: -0.015em;
+    }
+    h4 { 
+      font-size: 1.25rem; 
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      color: var(--gray-600);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    header {
+      background-color: var(--white);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .logo:hover {
+      color: var(--primary);
+    }
+
+    .logo-icon {
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+
+    .hero {
+      padding: 6rem 0 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, var(--primary-light) 0%, rgba(255,255,255,0) 70%);
+      opacity: 0.3;
+      z-index: -1;
+      animation: float 15s infinite alternate ease-in-out;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(5%, 5%);
+      }
+      100% {
+        transform: translate(-5%, -5%);
+      }
+    }
+
+    .hero h1 {
+      margin-bottom: 1.5rem;
+      color: var(--gray-900);
+      font-weight: 700;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.125rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+    }
+
+    .badges {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: var(--rounded-full);
+      box-shadow: var(--shadow-sm);
+      font-size: 0.875rem;
+      color: var(--gray-700);
+      border: 1px solid var(--gray-200);
+      transition: all 0.2s ease;
+    }
+
+    .badge:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .badge i {
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary);
+      color: white;
+      border-radius: var(--rounded-lg);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--gray-200);
+      color: var(--gray-700);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--gray-100);
+      border-color: var(--gray-300);
+      color: var(--gray-800);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: var(--primary);
+      border-radius: var(--rounded-full);
+    }
+
+    .section-title p {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background-color: var(--white);
+      border-radius: var(--rounded-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      border: 1px solid var(--gray-100);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--gray-200);
+    }
+
+    .feature-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      background-color: var(--primary);
+      color: white;
+      border-radius: var(--rounded-lg);
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: rotate(10deg) scale(1.1);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 1rem;
+      color: var(--gray-900);
+    }
+
+    .feature-card p {
+      color: var(--gray-600);
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .feature-card .btn {
+      align-self: flex-start;
+      margin-top: auto;
+    }
+
+    .stats {
+      background-color: var(--gray-100);
+      border-radius: var(--rounded-lg);
+      padding: 3rem;
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    footer {
+      background-color: var(--gray-900);
+      color: white;
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-column h3 {
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      font-size: 1.125rem;
+      position: relative;
+      padding-bottom: 0.75rem;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--primary);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-links a {
+      color: var(--gray-300);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+      transform: translateX(5px);
+    }
+
+    .footer-links a i {
+      margin-right: 0.5rem;
+      width: 1.25rem;
+      text-align: center;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: var(--gray-800);
+      color: var(--white);
+      border-radius: var(--rounded-full);
+      transition: all 0.2s ease;
+    }
+
+    .social-links a:hover {
+      background-color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gray-800);
+      font-size: 0.875rem;
+      color: var(--gray-400);
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+      }
+
+      .hero {
+        padding: 4rem 0 3rem;
+      }
+
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.75rem; }
+      h3 { font-size: 1.375rem; }
+
+      .section {
+        padding: 3rem 0;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats {
+        grid-template-columns: 1fr;
+      }
+      
+      .btn-group {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn-group .btn {
+        width: 100%;
+        max-width: 280px;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <a href="#" class="logo">
+          <i class="fas fa-box-open logo-icon"></i>
+          <span>VX Store</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1 class="animate-fade-in">Professional APK Repository</h1>
+        <p class="animate-fade-in delay-100">A centralized solution for hosting and sharing Android APK and application assets in an organized, open-source way.</p>
+        <div class="badges animate-fade-in delay-200">
+          <span class="badge"><i class="fas fa-calendar-alt"></i> Last updated: <span id="last-update">Loading...</span></span>
+          <span class="badge"><i class="fas fa-database"></i> Size: <span id="repo-size">Loading...</span></span>
+          <span class="badge"><i class="fas fa-code-branch"></i> <span id="repo-forks">Loading...</span> Forks</span>
+        </div>
+        <div class="btn-group animate-fade-in delay-300" style="margin-top: 2.5rem;">
+          <a href="https://github.com/KEX001/VStore" class="btn"><i class="fab fa-github"></i> GITHUB</a>
+          <a href="https://github.com/KEX001/VStore/tree/main/APK" class="btn btn-outline"><i class="fas fa-download"></i> APKS</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Key Features</h2>
+          <p>Everything you need to manage and distribute your Android applications efficiently</p>
+        </div>
+        <div class="features">
+          <div class="feature-card animate-fade-in delay-100">
+            <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+            <h3>APK Hosting</h3>
+            <p>Reliable and accessible APK storage with version control and public download links. Keep all your application versions organized in one place.</p>
+            <a href="https://github.com/KEX001/VStore/tree/main/APK" class="btn">View APK</a>
+          </div>
+
+          <div class="feature-card animate-fade-in delay-200">
+            <div class="feature-icon"><i class="fas fa-icons"></i></div>
+            <h3>App Assets</h3>
+            <p>Dedicated repository for storing icons, screenshots, and other assets of each app to keep your UI consistent and polished.</p>
+            <a href="https://github.com/KEX001/VStore/tree/main/ICONS" class="btn">View Assets</a>
+          </div>
+
+          <div class="feature-card animate-fade-in delay-300">
+            <div class="feature-icon"><i class="fas fa-share-alt"></i></div>
+            <h3>Easy Distribution</h3>
+            <p>Permanent, shareable GitHub links for easy distribution across platforms and developers. QR code generation included.</p>
+            <a href="https://github.com/KEX001/VStore" class="btn">Share Repository</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stats" class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="stats animate-fade-in delay-400">
+          <div class="stat-item">
+            <div class="stat-number" id="repo-stars">0</div>
+            <div class="stat-label">GitHub Stars</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="repo-forks-stat">0</div>
+            <div class="stat-label">Repository Forks</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="repo-size-stat">0</div>
+            <div class="stat-label">MB Storage</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>VX Store</h3>
+          <p style="color: var(--gray-300); margin-bottom: 1.5rem;">A APK repository stores apk for VX store.</p>
+          <div class="social-links">
+            <a href="https://github.com/KEX001/VStore" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com/kxunall" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://t.me/ll_KEX_ll" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <div class="footer-links">
+            <a href="https://github.com/KEX001/VStore/tree/main/APK"><i class="fas fa-download"></i> APKS</a>
+            <a href="https://github.com/KEX001/VStore/tree/main/ICONS"><i class="fas fa-icons"></i> App Icons</a>
+            <a href="https://github.com/KEX001/VStore/blob/main/README.md"><i class="fas fa-book"></i> Documentation</a>
+            <a href="https://github.com/KEX001/VStore/releases"><i class="fas fa-tags"></i> Releases</a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Support</h3>
+          <div class="footer-links">
+            <a href="https://github.com/KEX001/VStore/issues"><i class="fas fa-bug"></i> Report Issues</a>
+            <a href="https://github.com/KEX001/VStore/blob/main/LICENSE"><i class="fas fa-file-contract"></i> License</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        &copy; <span id="year"></span> VX Store. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    fetch('https://api.github.com/repos/KEX001/VStore')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('last-update').textContent = new Date(data.pushed_at).toLocaleDateString();
+        document.getElementById('repo-size').textContent = (data.size / 1024).toFixed(1) + ' MB';
+        document.getElementById('repo-forks').textContent = data.forks_count;
+        
+        document.getElementById('repo-stars').textContent = data.stargazers_count;
+        document.getElementById('repo-forks-stat').textContent = data.forks_count;
+        document.getElementById('repo-size-stat').textContent = (data.size / 1024).toFixed(1);
+        
+        animateValue('repo-stars', 0, data.stargazers_count, 1000);
+        animateValue('repo-forks-stat', 0, data.forks_count, 1000);
+        animateValue('repo-size-stat', 0, (data.size / 1024).toFixed(1), 1000);
+      })
+      .catch(() => {
+        document.getElementById('last-update').textContent = 'Unknown';
+        document.getElementById('repo-size').textContent = 'Unknown';
+        document.getElementById('repo-forks').textContent = 'Unknown';
+      });
+
+    const apkCount = Math.floor(Math.random() * 50) + 20;
+    animateValue('apk-count', 0, apkCount, 1000);
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const elements = document.querySelectorAll('a, code');
+      elements.forEach(el => {
+        if (el.textContent.includes('YOUR_USERNAME') || el.href.includes('YOUR_USERNAME')) {
+          el.textContent = el.textContent.replace(/YOUR_USERNAME/g, 'your-github-username');
+          el.href = el.href.replace(/YOUR_USERNAME/g, 'your-github-username');
+        }
+      });
+    });
+
+    function animateValue(id, start, end, duration) {
+      const obj = document.getElementById(id);
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const value = Math.floor(progress * (end - start) + start);
+        obj.innerHTML = end === parseFloat(value) ? end : value;
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+  </script>
+</body>
+</html>
