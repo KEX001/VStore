@@ -6,7 +6,7 @@
 
 <div style="background:#f8f9fa;padding:1.5rem;border-radius:8px;margin:1rem 0;">
   <h2 style="margin-top:0;">🌐 Web Portal</h2>
-  <p>Visit our <a href="index.html" style="color:#5865F2;text-decoration:none;font-weight:bold;">interactive web portal</a> for a better browsing experience!</p>
+  <p>Visit our <a href="https://v-store-lac.vercel.app/" style="color:#5865F2;text-decoration:none;font-weight:bold;">interactive web portal</a> for a better browsing experience!</p>
 </div>
 
 <h2>📂 Repository Structure</h2>
@@ -85,5 +85,5 @@ VX-Store/
 <div align="center" style="margin-top:2rem;">
   <a href="LICENSE" style="display:inline-block;background:#5865F2;color:white;padding:0.5rem 1rem;border-radius:4px;text-decoration:none;">📜 View License</a>
   <span style="margin:0 1rem;">•</span>
-  <a href="index.html" style="display:inline-block;background:#4CAF50;color:white;padding:0.5rem 1rem;border-radius:4px;text-decoration:none;">🌐 Visit Web Portal</a>
+  <a href="https://v-store-lac.vercel.app/" style="display:inline-block;background:#4CAF50;color:white;padding:0.5rem 1rem;border-radius:4px;text-decoration:none;">🌐 Visit Web Portal</a>
 </div>
